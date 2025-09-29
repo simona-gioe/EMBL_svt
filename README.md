@@ -8,4 +8,13 @@ The [Concatenate_Images.py](https://github.com/simona-gioe/EMBL_svt/blob/main/co
 
 ## Period evolution analysis
 
+This script was developed to align imaging samples based on their oscillations period evolution dynamics along the anteroposterior axis of the presomitic mesoderm. Period evolution data was extracted by [wavelet analysis](https://github.com/PGLSanchez/EMBL_OscillationsAnalysis/blob/master/EntrainmentAnalysis/SCRIPT-EntrainmentAnalysis.ipynb) performed on raw intensity data extracted from [intensity kymographs](https://git.embl.org/grp-cba/tail-analysis/-/blob/main/analysis_workflow.md?ref_type=heads).
 
+To execute the [ap-period-stats.py](https://github.com/simona-gioe/EMBL_svt/blob/main/period-evolution/ap-period-stats.py) script, download it and save it in the same folder as your input files. The full conda environment used to run this code to generate outputs for my PhD thesis is stored [here](https://github.com/simona-gioe/EMBL_svt/blob/main/full-environment.yml) for archival purposes. For a list of dependencies, please consult the [period-requirements.txt]() file.
+
+**Input files**
+
+**Output files**
+
+
+## Segment size analysis
