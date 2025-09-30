@@ -32,6 +32,11 @@ Each additional column should then correspond to a separate experimental sample:
 
 **Output files**
 
+Two output files will be stored in a newly-created `/results` folder inside the working directory:
+* `AP_period_comparison.csv` contains the full summary of arrival/origin period comparisons between control and treated samples, grouped by 200-minute time bins
+* `AP_period_comparison_outliers.csv` contains a filtered subset of the first file, highlighting treated samples with unusually high ratios relative to the control distribution
+
+<br />
 
 **Instructions for execution**
 1. Download [ap-period-stats.py](https://github.com/simona-gioe/EMBL_svt/blob/main/period-evolution/ap-period-stats.py) and place it in the same directory as your input files
