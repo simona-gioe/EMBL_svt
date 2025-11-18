@@ -66,6 +66,72 @@ This series of scripts was developed to analyse nascent somite length measuremen
 Detailed information on how the length measurements need to be acquired is available in section *5.5.4 Acquisition of somite length measurements* in the [published thesis](https://archiv.ub.uni-heidelberg.de/volltextserver/37071/). In brief, nascent somites can be measured by tracing three 1-pixel-wide ROI lines across the somite width, on the clearest Z-slice of the brightfield channel. For every ROI line, the intensity profile should then be saved as a CSV file. All ROI lines for a sample should also be saved together by adding them to the Fiji ROI manager as they are traced and then exporting the entire ROI set as a ZIP file.
 It is recommended to lightly smooth the image prior to ROI line tracing by applying a Gaussian filter (σ= 0.5-1.7). The code is configured for timelapse datasets acquired every 10 minutes with 7 Z-slices. ROI lines should be traced on files containing the brightfield channel only.
 
+**Conda environment**
+All scripts for segment size analysis run within the same virtual environment.
+
+
+### Detection of somite boundaries
+
+
+
+**Input files**
+
+
+
+**Output files**
+
+
+
+**Instructions for execution**
+
+
+### Correlation of length measurements with acquisition timepoint
+
+
+
+**Input files**
+
+
+
+**Output files**
+
+
+
+**Instructions for execution**
+
+
+### Calculation of somite lengths
+
+
+
+**Input files**
+
+
+
+**Output files**
+
+
+
+**Instructions for execution**
+
+
+### Statistical analysis
+
+
+
+**Input files**
+
+
+
+**Output files**
+
+
+
+**Instructions for execution**
+
+
+### (Optional) Correlation of length measurements to oscillation period and phase
+
 
 
 **Input files**
