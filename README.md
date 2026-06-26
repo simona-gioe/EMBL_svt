@@ -62,12 +62,40 @@ Two output files will be stored in a newly-created `/results` folder inside the 
 
 ## Segment size analysis
 
-This series of scripts was developed to analyse nascent somite length measurements acquired from brightfield imaging timeseries.
+This series of scripts was developed to quantify and analyse nascent somite length measurements acquired from brightfield imaging timeseries.
+
 Detailed information on how the length measurements need to be acquired is available in section *5.5.4 Acquisition of somite length measurements* in the [published thesis](https://archiv.ub.uni-heidelberg.de/volltextserver/37071/). In brief, nascent somites can be measured by tracing three 1-pixel-wide ROI lines across the somite width, on the clearest Z-slice of the brightfield channel. For every ROI line, the intensity profile should then be saved as a CSV file. All ROI lines for a sample should also be saved together by adding them to the Fiji ROI manager as they are traced and then exporting the entire ROI set as a ZIP file.
-It is recommended to lightly smooth the image prior to ROI line tracing by applying a Gaussian filter (σ= 0.5-1.7). The code is configured for timelapse datasets acquired every 10 minutes with 7 Z-slices. ROI lines should be traced on files containing the brightfield channel only.
+
+It is recommended to lightly smooth the image prior to ROI line tracing by applying a Gaussian filter (σ= 0.5-1.7). The workflow assumes timelapse datasets acquired every 10 minutes with 7 Z-slices per time point. To use the workflow with data acquired with different settings, these values should be changed in [extract_roi.py](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size/extract-roi.py). ROI lines are expected to be traced on files containing the brightfield channel only.
+
 
 **Conda environment**
+
 All scripts for segment size analysis run within the same virtual environment.
+
+* You can install a virtual environment for the execution of this script by downloading [segment-size-environment.yml](https://github.com/simona-gioe/EMBL_svt/blob/main/environments/segment-size-environment.yml) to your home directory and running the snippet below on the terminal
+
+```
+conda env create -f segment-size-environment.yml
+```
+After creating the environment, you can activate it by running
+
+```
+conda activate segment-size-environment
+```
+    
+* If you want to create your own environment, you can consult [segment-size-requirements.txt](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size-requirements.txt) for a list of dependencies
+  
+* The full conda environment used to run this code to generate outputs for my PhD thesis is stored [here](https://github.com/simona-gioe/EMBL_svt/blob/main/full-environment.yml) for archival purposes
+
+**Execution order**
+
+The segment size analysis scripts are inteded to be executed sequentially, as each script generates the input required for the next. The order of execution is as follows:
+1. [extract_roi.py](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size/extract-roi.py)
+2. [segment-size.py](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size/segment-size.py)
+3. [calculate-length.py](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size/calculate-length.py)
+4. [sort-and-tidy.py](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size/sort-and-tidy.py)
+5. [stats-and-plots.py](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size/stats-and-plots.py)
 
 
 ### Detection of somite boundaries
