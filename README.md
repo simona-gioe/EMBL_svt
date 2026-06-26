@@ -75,14 +75,13 @@ All scripts for segment size analysis run within the same virtual environment.
 
 * You can install a virtual environment for the execution of this script by downloading [segment-size-environment.yml](https://github.com/simona-gioe/EMBL_svt/blob/main/environments/segment-size-environment.yml) to your home directory and running the snippet below on the terminal
 
-```
-conda env create -f segment-size-environment.yml
-```
-After creating the environment, you can activate it by running
-
-```
-conda activate segment-size-environment
-```
+   ```
+   conda env create -f segment-size-environment.yml
+   ```
+   After creating the environment, you can activate it by running
+   ```
+   conda activate segment-size-environment
+   ```
     
 * If you want to create your own environment, you can consult [segment-size-requirements.txt](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size-requirements.txt) for a list of dependencies
   
@@ -141,7 +140,11 @@ The script uses this naming convention to group the three independent measuremen
 
 **Output files**
 
-
+The script creates four output folders in the working directory:
+* ```/plots``` contains quality control plots showing the boundaries detected on the complete raw intensity profiles
+* ```/half_plots``` contains quality control plots showing boundary detection performed independently on the two halves of each raw intensity profile
+* ```/sg_half_plots``` contains quality control plots showing boundary detection performed independently on the two halves of each Savitzky-Golay smoothed intensity profile
+* ```/results``` contains a CSV file
 
 **Instructions for execution**
 
