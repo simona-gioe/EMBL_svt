@@ -65,7 +65,6 @@ Two output files will be stored in a newly-created `/results` folder inside the 
 This series of scripts was developed to quantify and analyse nascent somite length measurements acquired from brightfield imaging timeseries.
 
 Detailed information on how the length measurements need to be acquired is available in section *5.5.4 Acquisition of somite length measurements* in the [published thesis](https://archiv.ub.uni-heidelberg.de/volltextserver/37071/). In brief, nascent somites can be measured by tracing three 1-pixel-wide ROI lines across the somite width, on the clearest Z-slice of the brightfield channel. For every ROI line, the intensity profile should then be saved as a CSV file. All ROI lines for a sample should also be saved together by adding them to the Fiji ROI manager as they are traced and then exporting the entire ROI set as a ZIP file.
-
 It is recommended to lightly smooth the image prior to ROI line tracing by applying a Gaussian filter (σ= 0.5-1.7). The workflow assumes timelapse datasets acquired every 10 minutes with 7 Z-slices per time point. To use the workflow with data acquired with different settings, these values should be changed in [extract_roi.py](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size/extract-roi.py). ROI lines are expected to be traced on files containing the brightfield channel only.
 
 
@@ -161,6 +160,16 @@ The quality control plots should be visually inspected to verify that the automa
 
 **Instructions for execution**
 
+1. Download [segment-size.py](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size/segment-size.py) and place it in the directory containing the intensity profile CSV files.
+2. From the terminal, navigate to the correct directory and activate the segment size analysis conda environment (see **"Conda environment"** above)
+3. Run the script by executing
+   ```
+   python segment-size.py
+   ```
+   
+4. If the script encounters ambiguous boundary positions, it will pause and request manual input from the user to identify the correct boundary coordinates. In this event, follow the prompts diplayed in the terminal before allowing the analysis to continue.
+5. After execution, inspect the generated quality control plots and manually correct the calculated segment lengths where necessary.
+6. Save the curated segment length measurements as a CSV file (see **"Output files"**)
 
 
 ### Correlation of length measurements with acquisition timepoint
