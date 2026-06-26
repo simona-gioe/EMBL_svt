@@ -144,9 +144,23 @@ The script creates four output folders in the working directory:
 * ```/plots``` contains quality control plots showing the boundaries detected on the complete raw intensity profiles
 * ```/half_plots``` contains quality control plots showing boundary detection performed independently on the two halves of each raw intensity profile
 * ```/sg_half_plots``` contains quality control plots showing boundary detection performed independently on the two halves of each Savitzky-Golay smoothed intensity profile
-* ```/results``` contains a CSV file
+* ```/results``` contains a CSV file for each experimental sample. Each file is named ```YYYYMMDD_W00XX_segment-lengths.csv``` and it reports the calculated segment length according to the three boundary detection strategies
+
+The quality control plots should be visually inspected to verify that the automatically detected boundaries correspond to the anatomical somite boundaries. Following visual inspection, the correct segment length should be selected for each intensity profile. Where necessary, automatically detected boundary position can be detected manually by comparison to the original brightfiled image. The curated measurements should be saved in a separate file for each sample, named ```YYYYMMDD_W00XX_lengths.csv```, which will serve as input for a subsequent step.
+
+*CSV structure example*
+
+| segment               | length | 
+| --------------------- | ------ |
+| YYYYMMDD_W00XX_C_01_1 | 123.45 |
+| YYYYMMDD_W00XX_C_01_2 | 678.90 |
+| YYYYMMDD_W00XX_C_01_3 | 56.78  |
+
+<br />
+
 
 **Instructions for execution**
+
 
 
 ### Correlation of length measurements with acquisition timepoint
