@@ -91,8 +91,9 @@ conda activate segment-size-environment
 **Execution order**
 
 The segment size analysis scripts are inteded to be executed sequentially, as each script generates the input required for the next. The order of execution is as follows:
-1. [extract_roi.py](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size/extract-roi.py)
-2. [segment-size.py](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size/segment-size.py)
+
+1. [segment-size.py](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size/segment-size.py)
+2. [extract_roi.py](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size/extract-roi.py)
 3. [calculate-length.py](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size/calculate-length.py)
 4. [sort-and-tidy.py](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size/sort-and-tidy.py)
 5. [stats-and-plots.py](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size/stats-and-plots.py)
@@ -100,10 +101,42 @@ The segment size analysis scripts are inteded to be executed sequentially, as ea
 
 ### Detection of somite boundaries
 
+The first step of the workflow is to detect the anterior and posterior boundaries of nascent somites from brightfield intensity profiles extracted from manually traced ROI lines. The distance between the two boundaries is calculated as the somite length.
+
 
 
 **Input files**
 
+The expected input files are CSV files containing intensity profiles exported from Fiji. Each CSV file should correspond to one manually traced ROI line across the length of a nascent somite.
+Each CSV file is expected to contain two columns: the first column should contain the distance along the ROI (in microns), and the second (labelled "Gray_Value") should contain the corresponding pixel intensity values.
+
+
+*CSV structure example*
+
+| Distance_(microns) | Gray_Value | 
+| ------------------ | ---------- |
+| 0.000              | 1234.000   |
+| 1.384              | 9876.999   |
+| 2.768              | 8877.665   |
+
+<br />
+
+For each nascent somite, three intensity profile CSV files should be available, corresponding to three ROI lines traced at different positions across the lenght of the somite during image analysis. These filenames are expected to follow the convention "YYYYMMDD_W00XX_C_ZZ_R.csv", where:
+* YYYYMMDD is the experiment date,
+* W00XX is the unique sample identifier,
+* C is the experimental condition (C for control or D for DAPT-treated samples),
+* ZZ is the nascent somite number,
+* R is the ROI line number (1, 2, or 3).
+
+For example, the three intensity profiles acquired for somite 8 of DAPT-treated sample W0003 imaged on January 1st 2021 are expected to be named:
+
+20210101_W0003_D_08_1.csv
+
+20210101_W0003_D_08_2.csv
+
+20210101_W0003_D_08_3.csv
+
+The script uses this naming convention to group the three independent measurements belonging to the same somite.
 
 
 **Output files**
