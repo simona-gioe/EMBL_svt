@@ -323,10 +323,19 @@ Step 1 expects the processed CSV files (```YYYYMMDD_W00XX_lengths_processed.csv`
 
 **Input files 2**
 
-
+ The input files for this step are the output files for Step 1.
 
 **Output files 2**
 
+The script creates two output folders in the working directory:
+* ```/stat-files``` contains summary statistics and statistical test results for each analyzed dataset, including:
+   * mean segment lenght
+   * standard deviation
+   * standard error of the mean (SEM)
+   * p-values from Welch's two-sample t-test comparing control and DAPT-treated samples for each somite.
+* ```/stat-plots``` contains plots and figures in both PNG and PDF formats, including:
+   * plots comparing segment lengths between experimental conditions
+   * optional plots relating segment length to oscillation period and phase-locking time
 
 
 **Instructions for execution 2**
@@ -335,5 +344,4 @@ Step 1 expects the processed CSV files (```YYYYMMDD_W00XX_lengths_processed.csv`
    ```
    python stats-and-plots.py
    ```
-2. IF 
-
+2. If an ```entrainment-files``` folder is not present, the script performs the standard statistical analysis only and skips the optional correlation of somite length measurements to oscillation period and phase
