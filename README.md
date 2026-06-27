@@ -239,6 +239,14 @@ Each output file contains the following columns:
 
 **Instructions for execution**
 
+1. Download [calculate-length.py](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size/calculate-length.py) and place it in the directory containing the curated ```*_lengths.csv``` files and the corresponding ```*_ROIs-timepoints.csv``` files.
+2. From the terminal, navigate to the correct directory and activate the segment size analysis conda environment
+3. Run the script by executing
+   ```
+   python calculate-length.py
+   ```
+   
+5. If the script reports a discrepancy between the number of detected segments, averaged measurements, and acquisition timepoints, double check that each somite has exactly three length measurements in ```*_lengths.csv``` and that the matching ```*_ROIs-timepoints.csv``` file contains one timepoint for each measured somite.
 
 
 ### Statistical analysis
