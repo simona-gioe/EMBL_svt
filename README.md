@@ -202,17 +202,43 @@ These CSV files serve as input for the next step of the analysis.
 
 ### Calculation of somite lengths
 
-
+This script combines the manually curated segment length measurements with their corresponding acquisition time points. For each nascent somite, the three independent ROI line measurements are averaged to obtain a single representative somite length.
 
 **Input files**
 
+The script expects two input files per analysed sample:
+* A manually curated ```YYYYMMDD_W00XX_lengths.csv```` file containing the segment length measurements for all ROI lines acquired from the corresponding experimental sample
+* A corresponding ```YYYYMMDD_W00XX_ROIs-timepoints.csv``` file containing the acquisition time for each mesured somite
 
+Both these files are generated at previous steps of this workflow. They are automatically matched based on experiment date and sample identifier. For example:
+
+20250418_W0005_lengths.csv
+20250418_W0005_ROIs-timepoints.csv
 
 **Output files**
 
+The script generates one CSV file per analysed sample and stores it in the working directory. The output files follow the naming convention ```YYYYMMDD_W00XX_lengths_processed.csv```. For example:
 
+20250418_W0005_lengths_processed.csv
+
+Each output file contains the following columns:
+* ```segment```: segment identifier
+* ```average-length```: mean somite length calculated from the three idependent ROI line measurements
+* ```standard-deviation```: standard deviation of the three independent measurements
+* ```measurement-time(min)```: acquisition time of the corresponding somite measurements, in minutes
+
+*CSV structure example*
+
+| segment             | average-length | standard-deviation | measurement-time(min) | 
+| ------------------- | -------------- | ------------------ | --------------------- |
+| 20250418_W0005_D_00 | 123.45         | 1.1234567          | 0                     |
+| 20250418_W0005_D_01 | 678.90         | 2.2345678          | 140                   |
+| 20250418_W0005_D_02 | 56.78          | 3.3456789          | 280                   |
+
+<br />
 
 **Instructions for execution**
+
 
 
 ### Statistical analysis
