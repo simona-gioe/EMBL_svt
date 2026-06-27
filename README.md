@@ -55,9 +55,9 @@ Two output files will be stored in a newly-created `/results` folder inside the 
     * If you want to create your own environment, you can consult [period-requirements.txt](https://github.com/simona-gioe/EMBL_svt/blob/main/period-requirements.txt) for a list of dependencies
     * The full conda environment used to run this code to generate outputs for my PhD thesis is stored [here](https://github.com/simona-gioe/EMBL_svt/blob/main/full-environment.yml) for archival purposes
 3. After activating the virtual environment, you can run the script by copy-pasting and executing this command on the terminal:
-  ```
-  python ap-period-stats.py
-  ```
+   ```
+   python ap-period-stats.py
+   ```
 
 
 ## Segment size analysis
@@ -174,17 +174,30 @@ The quality control plots should be visually inspected to verify that the automa
 
 ### Correlation of length measurements with acquisition timepoint
 
-
+This script extracts the acquisition time corresponding to each nascent somite measurement from the Fiji ROI ZIP files saved during image analysis.
 
 **Input files**
 
-
+The expected input for this script consists of ZIP files exported from the Fiji ROI Manager. Each ZIP file should contain the complete set of ROI lines traced for a single sample. The file names are expected to follow the convention ```YYYYMMDD_W00XX_ROIs.zip```. Each nascent somite should be represented by three ROI lines, corresponding to the three independednt length measurements. The script assumes that the imaging data consists of 7 Z-slices acquired every 10 minutes.
 
 **Output files**
 
+The script creates a ```/results``` folder containing onw CSV file per analysed sample. The file names follow the convention ```YYYYMMDD_W00XX_ROIs-timepoints.csv```. Each output file contains two colums:
+* ```somite-number``` stores the sequential index of the measured nascent somite,
+* ```time(min)``` stores the acquisition timepoint of the measurement.
 
+These CSV files serve as input for the next step of the analysis.
 
 **Instructions for execution**
+
+1. Download [extract-roi.py](https://github.com/simona-gioe/EMBL_svt/blob/main/segment-size/extract-roi.py) and place it in the directory containing the Fiji ROI ZIP files.
+2. From the terminal, navigate to the correct directory and activate the segment size analysis conda environment (see **"Conda environment"** above)
+3. Run the script by executing
+   ```
+   python extract-roi.py
+   ```
+   
+4. If the script detects inconsistent acquisition times among the three ROI lines corresponding to the same somite, it will pause and request manual input from the user to specify the correct time point before continuing the analysis. In this event, follow the prompts diplayed in the terminal before allowing the analysis to continue.
 
 
 ### Calculation of somite lengths
